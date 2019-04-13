@@ -7,8 +7,9 @@ if(document.getElementById('buyNow') != null) {
   }
 }
 
+
 if(document.getElementById('addToCart_feature_div') != null) {
   document.getElementById('addToCart_feature_div').onclick = function() {
-    return confirm('are you sure?');
+      return confirm("Are you sure?")
   }
 }
