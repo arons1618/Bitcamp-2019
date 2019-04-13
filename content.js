@@ -1,3 +1,2 @@
-alert("Hello from your chrome extension")
-
-
+// content.js
+alert("hello mo");
