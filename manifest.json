@@ -2,16 +2,14 @@
   "manifest_version": 2,
   "name": "My Cool Extension",
   "version": "0.1",
-  "permissions": [
-    "tabs", "http://www.amazon.com/*"
-  ],
+ 
   "background": {
     "scripts": ["background.js"]
   },
   "content_scripts": [
     {
       "matches": [
-        "https://amazon.com/*", "http://amazon.com/*"
+        "https://www.amazon.com/*", "http://www.amazon.com/*"
       ],
       "js": ["jquery-3.4.0.min.js", "content.js"]
     }
