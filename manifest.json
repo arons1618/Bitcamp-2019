@@ -8,7 +8,7 @@
   "content_scripts": [
     {
       "matches": [
-        "<all_urls>"
+        "https://amazon.com/*", "http://amazon.com/*"
       ],
       "js": ["jquery-3.4.0.min.js", "content.js"]
     }
