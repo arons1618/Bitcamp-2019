@@ -1,2 +1,2 @@
 // content.js
-alert("hello mo");
+alert("hello mo")
