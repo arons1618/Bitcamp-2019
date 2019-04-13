@@ -22,7 +22,7 @@ document.onmousemove = function (){setTimeout(remove())};
 function remove(){
   if(document.getElementById('buyNow') != null) {
     var node = document.getElementById('buyNow')
-	  node.parentElement.removeChild(node)
+	node.parentElement.removeChild(node)
   }
 
   if(document.getElementById('sims-fbt') != null) {
@@ -69,4 +69,4 @@ function remove(){
     node = document.getElementById('rhf')
     node.parentElement.removeChild(node)
   }
-};
+}
