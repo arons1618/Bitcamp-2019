@@ -1,5 +1,6 @@
 // content.js
 
 window.onload = function() {
-	document.write('Hello world')
+	var node = document.getElementById('buyNow_feature_div')
+  node.parentElement.removeChild(node)
 }
