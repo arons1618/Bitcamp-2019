@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+
+<body>
+	<script>
+		function setCookie(cname, cvalue, exdays) {
+    	var d = new Date();
+    	d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    	var expires = "expires="+ d.toUTCString();
+    	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+		}
+
+		function getCookie(cname) {
+		var name = cname + "=";
+		var decodedCookie = decodeURIComponent(document.cookie);
+		var ca = decodedCookie.split(';');
+		for(var i = 0; i <ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) == ' ') {
+				c = c.substring(1);
+			}
+			if (c.indexOf(name) == 0) {
+				return c.substring(name.length, c.length);
+			}
+		}
+		return "";
+		}
+		function DisplayInfo() {
+            var expdate = new Date();
+            var visit;
+            expdate.setTime(expdate.getTime() +  (24 * 60 * 60 * 1000 * 365)); 
+            if(!(visit = GetCookie("visit"))) 
+                visit = 0;
+            visit++;
+            SetCookie("visit", visit, expdate, "/", null, false);
+            var message;
+            if(visit == 1) 
+                message="         Welcome to my page!";
+            if(visit== 2) 
+                message="           I see you came back !";
+            if(visit == 3) 
+                message="               Oh, it's you again!";
+            if(visit == 4)
+                message="            You must be curious!"; 
+            if(visit == 5) 
+                message="      You're practically a regular!";
+            if(visit == 6) 
+                message="              You need a hobby!";
+            if(visit == 7)
+                message="             Nothing better to do?"; 
+            if(visit == 8) 
+                message="            Don't you ever sleep?";
+            if(visit == 9)
+                message="                      Get a life!!!"; 
+            if(visit >= 10) 
+                message="  Rent is due on the 1st of the month!";
+
+            var txt = document.getElementById("txt").innerHTML =  "Your browser has visited this page " + visit + " time(s)." + message;    
+        }
+		window.onload=DisplayInfo;
+	</script>
+</body>
+</html>
