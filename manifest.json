@@ -1,12 +1,13 @@
 {
   "manifest_version": 2,
-  "name": "My Cool Extension",
+  "name": "Stopping Spree",
   "version": "0.1",
  
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["background.js"],
+		"persistent": true
   },
-
+ 
   "content_scripts": [
     {
       "matches": [
@@ -18,7 +19,12 @@
   "browser_action": {
     "default_icon": "icon.png", 
 	"default_popup" :   "index.html",
-	"default_title" :   "MoMoDaAsian"
-  }
+	"default_title" :   "Stopping Spree"
+  },
+  "permissions": [
+    "https://*/*",
+    "http://*/*",
+    "tabs"
+  ]
 
 }
