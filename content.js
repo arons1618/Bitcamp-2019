@@ -161,6 +161,11 @@ function remove() {
         node = document.getElementById('moreBuyingChoices_feature_div')
         node.parentElement.removeChild(node)
     }
+    
+    if(document.getElementById('desktop-1')) {
+        node = document.getElementById('desktop-1')
+        node.parentElement.removeChild(node)
+    }
 
     var elements = document.getElementsByClassName('a-row a-spacing-small a-size-large huc-v2-upsell-title');
     while (elements.length > 0) {
