@@ -1,4 +1,15 @@
 // content.js
+
+var buyNow
+    var priceVal
+    var priceValBuyBox
+    var priceWholeSpan
+    var priceRow
+    var priceRowFraction
+    var priceRowSymbol
+    var sizeBaseColor
+    var cartTotal
+
 if (document.getElementById('addToCart_feature_div') != null) {
     document.getElementById('addToCart_feature_div').onclick = function() {
         return confirm("Are you sure?")
@@ -42,6 +53,7 @@ window.onload = function() {
 
 document.onmousemove = function() {
     setTimeout(remove())
+    setTimeout(changeSamePrices("Big Macs", 3.99), 5000)
 };
 
 function remove() {
@@ -162,30 +174,25 @@ function remove() {
 }
 
 function changePrices(itemReplace, itemPrice) {
-    var buyNow
-    var priceVal
-    var priceValBuyBox
-    var priceWholeSpan
-    var priceRow
-    var priceRowFraction
-    var priceRowSymbol
-    var sizeBaseColor
-    var cartTotal
 
     if (document.getElementById('buyNow') !== null) {
         buyNow = document.getElementById('buyNow')
         buyNow.parentElement.removeChild(buyNow)
     }
 
-    if (document.getElementById('priceblock_ourprice') !== null) {
-        priceVal = document.getElementById('priceblock_ourprice')
-        priceVal.innerText = Math.ceil(parseFloat(priceVal.innerText.substring(1)) / itemPrice).toString() + " " + itemReplace
-    }
+    // if (document.getElementById('priceblock_ourprice') !== null) {
+    //     priceVal = document.getElementById('priceblock_ourprice')
+    //     priceVal.innerText = Math.ceil(parseFloat(priceVal.innerText.substring(1)) / itemPrice).toString() + " " + itemReplace
+    // }
 
-    if (document.getElementById('price_inside_buybox') !== null) {
-        priceValBuyBox = document.getElementById('price_inside_buybox')
-        priceValBuyBox.innerText = Math.ceil(parseFloat(priceValBuyBox.innerText.substring(1)) / itemPrice).toString() + " " + itemReplace
-    }
+    // if (document.getElementById('price_inside_buybox') !== null) {
+    //     priceValBuyBox = document.getElementById('price_inside_buybox')
+    //     priceValBuyBox.innerText = Math.ceil(parseFloat(priceValBuyBox.innerText.substring(1)) / itemPrice).toString() + " " + itemReplace
+        
+    // }
+
+    convertDivToUnit(itemReplace, itemPrice, 'price_inside_buybox')
+    convertDivToUnit(itemReplace, itemPrice, 'priceblock_ourprice')
 
     if (document.getElementsByClassName('a-row') !== null) {
         priceRow = document.getElementsByClassName('a-price-whole')
@@ -193,8 +200,9 @@ function changePrices(itemReplace, itemPrice) {
         priceRowSymbol = document.getElementsByClassName('a-price-symbol')
 
         for (var i = 0; i < priceRow.length; i++) {
-            priceRow[i].innerText = Math.ceil(parseFloat(priceRow[i].innerText.toString()) / itemPrice).toString() + " " + itemReplace
 
+            priceRow[i].innerText = Math.ceil(parseFloat(priceRow[i].innerText.replace(',', '').toString()) / itemPrice).toString() + " " + itemReplace
+            
             if (i < priceRowFraction.length) {
                 priceRowFraction[i].innerText = ""
             }
@@ -215,9 +223,149 @@ function changePrices(itemReplace, itemPrice) {
 
     if (document.getElementsByClassName('ewc-subtotal-price ewc-price ewc-color-price') !== null) {
         cartTotal = document.getElementsByClassName('ewc-subtotal-price ewc-price ewc-color-price')
-
+        // alert(cartTotal.length)
         for (var i = 0; i < cartTotal.length; i++) {
-            cartTotal[i].innerText = Math.ceil(parseFloat(cartTotal[i].innerText.toString().substring(1)) / itemPrice).toString() + " " + itemReplace
+            cartTotal[i].innerText = Math.ceil(parseFloat(cartTotal[i].innerText.toString().replace('$', '')) / itemPrice).toString() + " " + itemReplace
         }
+    }
+
+   // convertSpanToUnit(itemReplace, itemPrice, 'ewc-subtotal-price ewc-price ewc-color-price')
+   // if (document.getElementsByClassName('ewc-subtotal-price ewc-price ewc-color-price') !== null) {
+   //      var arr = document.getElementsByClassName('ewc-subtotal-price ewc-price ewc-color-price')
+   //      // alert(arr[0].innerText)
+   //      for (var i = 0; i < arr.length; i++) {
+
+   //          arr[i].innerText = Math.ceil(parseFloat(arr[i].innerText.replace(',', '').toString().replace('$', '')) / itemPrice).toString() + " " + itemReplace
+   //      }
+   //  }
+
+    //convertSpanToUnit(itemReplace, itemPrice, 'ewc-subtotal-price ewc-price ewc-color-price')
+    convertSpanToUnit(itemReplace, itemPrice, 'a-size-base a-color-price header-price a-text-norma')
+    convertSpanToUnit(itemReplace, itemPrice, 'a-size-mini twisterSwatchPrice')
+   // convertSpanToUnit(itemReplace, itemPrice, 'a-size-medium a-color-price sc-price sc-white-space-nowrap sc-product-price sc-price-sign a-text-bold')
+    convertSpanToUnit(itemReplace, itemPrice, 'a-size-medium a-color-price sc-price sc-white-space-nowrap sc-price-sign')
+
+}
+
+function convertSpanToUnit(unit, itemPrice, classIDPath) {
+  if (document.getElementsByClassName(classIDPath) !== null) {
+        var arr = document.getElementsByClassName(classIDPath)
+        // alert(arr[0].innerText)
+        for (var i = 0; i < arr.length; i++) {
+          arr[i].innerText = Math.ceil(parseFloat(arr[i].innerText.replace(',', '').toString().replace('$', '')) / itemPrice).toString() + " " + unit
+        }
+    }
+}
+
+function convertDivToUnit(unit, itemPrice, classIDPath) {
+  if (document.getElementById(classIDPath) !== null) {
+    var elt = document.getElementById(classIDPath)
+    //alert(elt.innerText)
+        
+        elt.innerText = Math.ceil(parseFloat(elt.innerText.replace(',', '').replace('$', '')) / itemPrice).toString() + " " + unit
+        
+    }
+}
+
+function changeSamePrices(itemReplace, itemPrice) {
+
+    if (document.getElementById('buyNow') !== null) {
+        buyNow = document.getElementById('buyNow')
+        buyNow.parentElement.removeChild(buyNow)
+    }
+
+    // if (document.getElementById('priceblock_ourprice') !== null) {
+    //     priceVal = document.getElementById('priceblock_ourprice')
+    //     priceVal.innerText = Math.ceil(parseFloat(priceVal.innerText.substring(1)) / itemPrice).toString() + " " + itemReplace
+    // }
+
+    // if (document.getElementById('price_inside_buybox') !== null) {
+    //     priceValBuyBox = document.getElementById('price_inside_buybox')
+    //     priceValBuyBox.innerText = Math.ceil(parseFloat(priceValBuyBox.innerText.substring(1)) / itemPrice).toString() + " " + itemReplace
+        
+    // }
+
+    convertDivToSameUnit(itemReplace, itemPrice, 'price_inside_buybox')
+    convertDivToSameUnit(itemReplace, itemPrice, 'priceblock_ourprice')
+
+    if (document.getElementsByClassName('a-row') !== null) {
+        priceRow = document.getElementsByClassName('a-price-whole')
+        priceRowFraction = document.getElementsByClassName('a-price-fraction')
+        priceRowSymbol = document.getElementsByClassName('a-price-symbol')
+
+        for (var i = 0; i < priceRow.length; i++) {
+
+            priceRow[i].innerText = priceRow[i].innerText
+            
+            if (i < priceRowFraction.length) {
+                priceRowFraction[i].innerText = priceRowFraction[i].innerText
+            }
+            if (i < priceRowSymbol.length) {
+                priceRowSymbol[i].innerText = priceRowSymbol[i].innerText
+            }
+        }
+    }
+
+    if (document.getElementsByClassName('a-size-base a-color-secondary') !== null) {
+        sizeBaseColor = document.getElementsByClassName('a-size-base a-color-secondary')
+
+        for (var i = 0; i < sizeBaseColor.length; i++) {
+            sizeBaseColor[i].innerText = ""
+        }
+    }
+
+
+    if (document.getElementsByClassName('ewc-subtotal-price ewc-price ewc-color-price') !== null) {
+        cartTotal = document.getElementsByClassName('ewc-subtotal-price ewc-price ewc-color-price')
+
+        if (cartTotal[0].innerText.includes('$')){
+          convertSpanToUnit(itemReplace, itemPrice, 'ewc-subtotal-price ewc-price ewc-color-price')
+        } else {
+          for (var i = 0; i < cartTotal.length; i++) {
+              cartTotal[i].innerText = cartTotal[i].innerText
+          } 
+      }
+    }
+
+    convertSpanToSameUnit(itemReplace, itemPrice, 'a-size-base a-color-price header-price a-text-norma')
+    convertSpanToSameUnit(itemReplace, itemPrice, 'a-size-mini twisterSwatchPrice')
+    convertSpanToSameUnit(itemReplace, itemPrice, 'a-size-medium a-color-price sc-price sc-white-space-nowrap sc-price-sign')
+
+}
+
+
+
+function convertSpanToSameUnit(unit, itemPrice, classIDPath) {
+  if (document.getElementsByClassName(classIDPath) !== null) {
+        var arr = document.getElementsByClassName(classIDPath)
+
+        for (var i = 0; i < arr.length; i++) {
+
+            arr[i].innerText = arr[i].innerText
+        }
+    }
+}
+
+function convertDivToUnit(unit, itemPrice, classIDPath) {
+  if (document.getElementById(classIDPath) !== null) {
+    var elt = document.getElementById(classIDPath)
+    //alert(elt.innerText)
+        
+        elt.innerText = Math.ceil(parseFloat(elt.innerText.replace(',', '').replace('$', '')) / itemPrice).toString() + " " + unit
+        
+    }
+}
+
+function convertDivToSameUnit(unit, itemPrice, classIDPath) {
+  if (document.getElementById(classIDPath) !== null) {
+    var elt = document.getElementById(classIDPath)
+    //alert(elt.innerText)
+        
+        if (elt.innerText.toString().includes('$')) {
+          convertDivToUnit(unit, itemPrice, classIDPath)
+        } else {
+          elt.innerText = elt.innerText
+        }
+        
     }
 }
