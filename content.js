@@ -17,31 +17,31 @@ if (document.getElementById('addToCart_feature_div') != null) {
 }
 if (document.getElementById('sc-buy-box') != null) {
     document.getElementById('sc-buy-box').onclick = function() {
-      if(Number(window.sessionStorage.getItem('jack')) > 3) {
+      
         window.open("https://www.mentalhealthamerica.net/conditions/risky-business-compulsive-buying")
-      }
+      
     }
 }
 
 
 if (document.getElementById('huc-v2-subcart-buttons-wrapper') != null) {
     document.getElementById('huc-v2-subcart-buttons-wrapper').onclick = function() {
-        if(Number(window.sessionStorage.getItem('jack')) > 3) {
+        
           window.open("https://www.mentalhealthamerica.net/conditions/risky-business-compulsive-buying")
-        }
+        
     }
 }
 
-if(window.localStorage.getItem('jack') === null) {
-  window.localStorage.setItem('jack', '1')
+if(window.localStorage.getItem('demo3') === null) {
+  window.localStorage.setItem('demo3', '1')
 } else {
-  value = Number(window.localStorage.getItem('jack'))
+  value = Number(window.localStorage.getItem('demo3'))
   curr = window.location.href
   if(curr.indexOf("amazon") != -1) {
-    window.localStorage.setItem('jack', ++value)
-    value = window.localStorage.getItem('jack')
-    if(value === "3") {
-      alert("Stop")
+    window.localStorage.setItem('demo3', ++value)
+    value = Number(window.localStorage.getItem('demo3'))
+    if(value % 3 === 0) {
+      alert("You are spending too much time on Amazon.com!!!")
     }
   }
 }
@@ -249,6 +249,7 @@ function changePrices(itemReplace, itemPrice) {
     convertSpanToUnit(itemReplace, itemPrice, 'a-size-mini twisterSwatchPrice')
    // convertSpanToUnit(itemReplace, itemPrice, 'a-size-medium a-color-price sc-price sc-white-space-nowrap sc-product-price sc-price-sign a-text-bold')
     convertSpanToUnit(itemReplace, itemPrice, 'a-size-medium a-color-price sc-price sc-white-space-nowrap sc-price-sign')
+    convertSpanToUnit(itemReplace, itemPrice, 'a-color-price abb-option-buying-pric)')
 
 }
 
@@ -335,6 +336,7 @@ function changeSamePrices(itemReplace, itemPrice) {
     convertSpanToSameUnit(itemReplace, itemPrice, 'a-size-base a-color-price header-price a-text-norma')
     convertSpanToSameUnit(itemReplace, itemPrice, 'a-size-mini twisterSwatchPrice')
     convertSpanToSameUnit(itemReplace, itemPrice, 'a-size-medium a-color-price sc-price sc-white-space-nowrap sc-price-sign')
+    convertSpanToSameUnit(itemReplace, itemPrice, 'a-color-price abb-option-buying-pric)')
 
 }
 
