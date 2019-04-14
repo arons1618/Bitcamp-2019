@@ -4,17 +4,35 @@ if (document.getElementById('addToCart_feature_div') != null) {
         return confirm("Are you sure?")
     }
 }
-
 if (document.getElementById('sc-buy-box') != null) {
     document.getElementById('sc-buy-box').onclick = function() {
+      if(Number(window.sessionStorage.getItem('jack')) > 3) {
         window.open("https://www.mentalhealthamerica.net/conditions/risky-business-compulsive-buying")
+      }
     }
 }
 
+
 if (document.getElementById('huc-v2-subcart-buttons-wrapper') != null) {
     document.getElementById('huc-v2-subcart-buttons-wrapper').onclick = function() {
-        window.open("https://www.mentalhealthamerica.net/conditions/risky-business-compulsive-buying")
+        if(Number(window.sessionStorage.getItem('jack')) > 3) {
+          window.open("https://www.mentalhealthamerica.net/conditions/risky-business-compulsive-buying")
+        }
     }
+}
+
+if(window.sessionStorage.getItem('jack') === null) {
+  window.sessionStorage.setItem('jack', '1')
+} else {
+  value = Number(window.sessionStorage.getItem('jack'))
+  curr = window.location.href
+  if(curr.indexOf("amazon") != -1) {
+    window.sessionStorage.setItem('jack', ++value)
+    value = window.sessionStorage.getItem('jack')
+    if(value === "3") {
+      alert("Stop")
+    }
+  }
 }
 
 window.onload = function() {
