@@ -136,7 +136,7 @@ function remove() {
         elements[0].parentNode.removeChild(elements[0]);
     }
 
-};
+}
 
 function changePrices(itemReplace, itemPrice) {
     var buyNow
