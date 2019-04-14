@@ -320,7 +320,7 @@ function changeSamePrices(itemReplace, itemPrice) {
     }
 
 
-    if (document.getElementsByClassName('ewc-subtotal-price ewc-price ewc-color-price') !== null) {
+    if (typeof document.getElementsByClassName('ewc-subtotal-price ewc-price ewc-color-price') === 'undefined') {
         cartTotal = document.getElementsByClassName('ewc-subtotal-price ewc-price ewc-color-price')
 
         if (cartTotal[0].innerText.includes('$')){
