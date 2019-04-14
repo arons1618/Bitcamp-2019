@@ -60,6 +60,11 @@ body {
   min-width:300px;
 }
 
+div{
+	align-content: center;
+	
+}
+
 [tabindex="-1"]:focus {
   outline: 0 !important;
 }
@@ -553,7 +558,8 @@ pre code {
 
 @media (min-width: 576px) {
   .container {
-    max-width: 540px;
+	max-width: 540px;
+	text-align: center;
   }
 }
 
@@ -10792,4 +10798,14 @@ label,
 
 .modal-header .close:hover, .modal-header .close:focus, .modal-footer .close:hover, .modal-footer .close:focus {
   opacity: 1;
+}
+.count {
+	text-align: center;
+	font-size: xx-large;
+	padding: 40px;
+}
+.spent {
+	padding: 40px;
+	font-size: xx-large;
+	text-align: center;
 }
