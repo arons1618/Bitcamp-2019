@@ -21,14 +21,14 @@ if (document.getElementById('huc-v2-subcart-buttons-wrapper') != null) {
     }
 }
 
-if(window.sessionStorage.getItem('jack') === null) {
-  window.sessionStorage.setItem('jack', '1')
+if(window.localStorage.getItem('jack') === null) {
+  window.localStorage.setItem('jack', '1')
 } else {
-  value = Number(window.sessionStorage.getItem('jack'))
+  value = Number(window.localStorage.getItem('jack'))
   curr = window.location.href
   if(curr.indexOf("amazon") != -1) {
-    window.sessionStorage.setItem('jack', ++value)
-    value = window.sessionStorage.getItem('jack')
+    window.localStorage.setItem('jack', ++value)
+    value = window.localStorage.getItem('jack')
     if(value === "3") {
       alert("Stop")
     }
@@ -144,7 +144,7 @@ function remove() {
         node = document.getElementById('rhf')
         node.parentElement.removeChild(node)
     }
-    
+
     if(document.getElementById('moreBuyingChoices_feature_div')) {
         node = document.getElementById('moreBuyingChoices_feature_div')
         node.parentElement.removeChild(node)
